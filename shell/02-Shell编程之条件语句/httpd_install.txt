@@ -1,0 +1,11 @@
+#!/bin/bash
+# 自动编译安装httpd服务器脚本
+tar zxvf httpd-2.4.25.tar.gz &>/dev/null
+cd httpd-2.4.25
+yum -y install gcc apr-devel apr-util apr-util-devel pcre-devel
+./configure --prefix=/usr/local/httpd --enable-so 
+make 
+make install 
+echo "http test">/usr/local/httpd/htdocs/index.html
+/usr/local/httpd/bin/apachectl start >/dev/null
+curl 127.0.0.1 

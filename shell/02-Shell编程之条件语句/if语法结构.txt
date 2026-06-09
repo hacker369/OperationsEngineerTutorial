@@ -1,0 +1,104 @@
+1. if-else语句
+单分支if语句
+语法结构：
+bash
+if [ 条件判断 ]; then
+    命令序列
+fi
+示例：
+bash
+#!/bin/bash
+num=10
+if [ $num -gt 5 ]; then
+    echo "数字 $num 大于 5"
+fi
+上述代码里，[ $num -gt 5 ]是条件判断部分，-gt表示 “大于”。若条件为真，就会执行then和fi之间的命令序列。
+双分支if-else语句
+语法结构：
+bash
+if [ 条件判断 ]; then
+    命令序列1
+else
+    命令序列2
+fi
+示例：
+bash
+#!/bin/bash
+num=3
+if [ $num -gt 5 ]; then
+    echo "数字 $num 大于 5"
+else
+    echo "数字 $num 小于或等于 5"
+fi
+当条件判断为真时，执行then后的命令序列 1；若为假，则执行else后的命令序列 2。
+多分支if-elif-else语句
+语法结构：
+bash
+if [ 条件判断1 ]; then
+    命令序列1
+elif [ 条件判断2 ]; then
+    命令序列2
+else
+    命令序列3
+fi
+示例：
+bash
+#!/bin/bash
+score=75
+if [ $score -ge 90 ]; then
+    echo "成绩为优秀"
+elif [ $score -ge 70 ]; then
+    echo "成绩为良好"
+else
+    echo "成绩为一般"
+fi
+此代码会依次判断条件，若条件判断 1 为真，执行命令序列 1；若为假，接着判断条件判断 2，若为真则执行命令序列 2；若前面条件都不满足，执行else后的命令序列 3。
+2. case语句
+case语句适合用于多个固定值的匹配。
+语法结构：
+bash
+case 值 in
+模式1)
+    命令序列1
+    ;;
+模式2)
+    命令序列2
+    ;;
+*)
+    命令序列3
+    ;;
+esac
+示例：
+bash
+#!/bin/bash
+fruit="apple"
+case $fruit in
+"apple")
+    echo "这是苹果"
+    ;;
+"banana")
+    echo "这是香蕉"
+    ;;
+*)
+    echo "未知水果"
+    ;;
+esac
+在上述代码中，case会将$fruit的值与各个模式进行匹配，若匹配到某个模式，就执行该模式下的命令序列，;;表示该分支结束。*是通配符，当所有模式都不匹配时，执行*下的命令序列。
+条件判断操作符
+在条件判断中，常用的操作符有：
+数值比较：
+-eq：等于
+-ne：不等于
+-gt：大于
+-lt：小于
+-ge：大于等于
+-le：小于等于
+字符串比较：
+=：等于
+!=：不等于
+-z：字符串长度为 0
+-n：字符串长度不为 0
+文件测试：
+-e：文件或目录存在
+-f：文件存在且为普通文件
+-d：目录存在

@@ -1,0 +1,15 @@
+#!/bin/bash
+# 收集系统信息
+
+echo "===== 系统信息报告 ====="
+echo "主机名: $(hostname)"
+echo "操作系统: $(uname -s)"
+echo "内核版本: $(uname -r)"
+echo "CPU信息:"
+lscpu | grep "Model name"
+echo "内存使用情况:"
+free -h | grep Mem
+echo "磁盘使用情况:"
+df -h | grep -v "tmpfs"
+echo "当前登录用户:"
+who
